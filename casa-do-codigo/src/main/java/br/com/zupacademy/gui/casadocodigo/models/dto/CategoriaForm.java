@@ -1,12 +1,14 @@
 package br.com.zupacademy.gui.casadocodigo.models.dto;
 
-import br.com.zupacademy.gui.casadocodigo.configs.validators.annotations.UniqueNomeCategoria;
+import br.com.zupacademy.gui.casadocodigo.configs.validators.annotations.UniqueField;
 import br.com.zupacademy.gui.casadocodigo.models.Categoria;
 
 import javax.validation.constraints.NotBlank;
 
+
+
 public class CategoriaForm {
-    @NotBlank @UniqueNomeCategoria
+    @NotBlank @UniqueField(nomeTabela = "Categoria",nomeCampo = "nome")
     private String nome;
 
     @Deprecated

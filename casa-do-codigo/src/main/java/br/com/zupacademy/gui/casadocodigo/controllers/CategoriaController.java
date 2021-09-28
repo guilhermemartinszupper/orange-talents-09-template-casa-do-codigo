@@ -14,7 +14,8 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/categorias")
-public class CadastroController {
+public class CategoriaController {
+
     @Autowired
     CategoriaRepository categoriaRepository;
 

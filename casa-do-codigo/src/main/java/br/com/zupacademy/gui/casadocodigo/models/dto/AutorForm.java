@@ -1,6 +1,6 @@
 package br.com.zupacademy.gui.casadocodigo.models.dto;
 
-import br.com.zupacademy.gui.casadocodigo.configs.validators.annotations.UniqueEmail;
+import br.com.zupacademy.gui.casadocodigo.configs.validators.annotations.UniqueField;
 import br.com.zupacademy.gui.casadocodigo.models.Autor;
 import org.hibernate.validator.constraints.Length;
 import javax.validation.constraints.Email;
@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 public class AutorForm {
     @NotBlank
     private String nome;
-    @NotBlank @Email @UniqueEmail
+    @NotBlank @Email @UniqueField(nomeTabela = "Autor",nomeCampo = "email")
     private String email;
     @NotBlank @Length(max = 400)
     private String descricao;

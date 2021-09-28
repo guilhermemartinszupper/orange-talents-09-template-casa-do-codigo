@@ -7,6 +7,4 @@ import javax.swing.text.html.Option;
 import java.util.Optional;
 
 public interface CategoriaRepository extends JpaRepository<Categoria, Long> {
-
-    public Optional<Categoria> findByNome (String nome);
 }
