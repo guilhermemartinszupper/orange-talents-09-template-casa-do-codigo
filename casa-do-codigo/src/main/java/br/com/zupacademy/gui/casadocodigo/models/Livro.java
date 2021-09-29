@@ -21,7 +21,7 @@ public class Livro {
     private String sumario;
     @NotNull @Min(20)
     private BigDecimal preco;
-    @NotNull @NotBlank @Min(100)
+    @NotNull @Min(100)
     private Integer numeroPaginas;
     @NotNull @NotBlank
     private String isbn;
@@ -36,6 +36,7 @@ public class Livro {
     public Livro() {
     }
 
+
     public Livro(String titulo, String resumo, String sumario, BigDecimal preco, Integer numeroPaginas, String isbn, LocalDate publicacao, Categoria categoria, Autor autor) {
         this.titulo = titulo;
         this.resumo = resumo;
@@ -46,6 +47,14 @@ public class Livro {
         this.publicacao = publicacao;
         this.categoria = categoria;
         this.autor = autor;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getTitulo() {
+        return titulo;
     }
 
     @Override
