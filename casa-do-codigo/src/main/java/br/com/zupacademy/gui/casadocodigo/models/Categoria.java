@@ -15,6 +15,10 @@ public class Categoria {
     public Categoria() {
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     public Categoria(String nome) {
         this.nome = nome;
     }
