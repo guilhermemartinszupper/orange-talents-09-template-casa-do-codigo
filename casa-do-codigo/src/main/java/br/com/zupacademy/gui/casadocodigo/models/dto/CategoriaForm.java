@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 
 
 public class CategoriaForm {
-    @NotBlank @UniqueField(nomeTabela = "Categoria",nomeCampo = "nome")
+    @NotBlank @UniqueField(domainClass = Categoria.class,nomeCampo = "nome")
     private String nome;
 
     @Deprecated

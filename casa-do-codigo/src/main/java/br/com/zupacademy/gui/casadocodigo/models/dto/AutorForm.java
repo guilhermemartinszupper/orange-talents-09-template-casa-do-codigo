@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 public class AutorForm {
     @NotBlank
     private String nome;
-    @NotBlank @Email @UniqueField(nomeTabela = "Autor",nomeCampo = "email")
+    @NotBlank @Email @UniqueField(domainClass = Autor.class,nomeCampo = "email")
     private String email;
     @NotBlank @Length(max = 400)
     private String descricao;

@@ -1,7 +1,7 @@
 package br.com.zupacademy.gui.casadocodigo.configs.validators;
 
 import br.com.zupacademy.gui.casadocodigo.configs.validators.annotations.UniqueField;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,26 +10,26 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.List;
 
-public class UniqueFieldValidator implements ConstraintValidator<UniqueField, String> {
+public class UniqueFieldValidator implements ConstraintValidator<UniqueField, Object> {
 
     @PersistenceContext
     EntityManager entityManager;
-    UniqueField uniqueData;
-
+    private String domainAttribute;
+    private Class<?> klass;
 
     @Override
     public void initialize(UniqueField constraintAnnotation) {
-        this.uniqueData = constraintAnnotation;
+        domainAttribute = constraintAnnotation.nomeCampo();
+        klass = constraintAnnotation.domainClass();
         ConstraintValidator.super.initialize(constraintAnnotation);
     }
 
     @Override
-    @Transactional
-    public boolean isValid(String s, ConstraintValidatorContext constraintValidatorContext) {
-        String jpql = "Select m from " + uniqueData.nomeTabela() + " m where " + uniqueData.nomeCampo() + " = '" + s + "'";
-        System.out.println(jpql);
-        Query query = entityManager.createQuery(jpql);
-        List<?> resultList = query.getResultList();
-        return resultList.isEmpty();
+    public boolean isValid(Object s, ConstraintValidatorContext constraintValidatorContext) {
+        Query query = entityManager.createQuery("select 1 from " + klass.getName() +" where " + domainAttribute +"=:value");
+        query.setParameter("value", s);
+        List<?> list = query.getResultList();
+        Assert.isTrue(list.size() <= 1, "Foi encontrado mais de um" + klass + "com o atributo "+domainAttribute+" = " + s);
+        return list.isEmpty();
     }
 }
