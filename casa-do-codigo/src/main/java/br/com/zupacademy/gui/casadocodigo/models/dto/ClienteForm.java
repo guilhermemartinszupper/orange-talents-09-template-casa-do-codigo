@@ -11,13 +11,14 @@ import br.com.zupacademy.gui.casadocodigo.models.Pais;
 import org.springframework.util.Assert;
 
 import javax.persistence.EntityManager;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Optional;
 
 @ValidaEstado
 public class ClienteForm {
-    @NotBlank @UniqueField(domainClass = Cliente.class,nomeCampo = "email")
+    @NotBlank @UniqueField(domainClass = Cliente.class,nomeCampo = "email") @Email
     private String email;
     @NotBlank
     private String nome;
