@@ -16,6 +16,7 @@ public class LivroDetalhadoDTO {
     private String categoria;
     private AutorDto autor;
 
+
     public LivroDetalhadoDTO(Livro livro) {
         Assert.notNull(livro, "Livro não Pode ser nulo");
         Assert.isTrue(livro.getTitulo() != null, "Livro não Pode ter titulo Nulo");
