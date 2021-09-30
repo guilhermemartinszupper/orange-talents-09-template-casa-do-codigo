@@ -1,6 +1,6 @@
 package br.com.zupacademy.gui.casadocodigo.configs.validators.annotations;
 
-import br.com.zupacademy.gui.casadocodigo.configs.validators.UniqueFieldValidator;
+import br.com.zupacademy.gui.casadocodigo.configs.validators.ValidaEstadoValidator;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -9,13 +9,12 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = {UniqueFieldValidator.class})
-@Target({ElementType.FIELD})
+@Constraint(validatedBy = ValidaEstadoValidator.class)
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UniqueField {
-    String message() default "Dado Invalido, valor ja existe";
+public @interface ValidaEstado {
+    String message() default "";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
-    Class<?> domainClass();
-    String nomeCampo();
+
 }

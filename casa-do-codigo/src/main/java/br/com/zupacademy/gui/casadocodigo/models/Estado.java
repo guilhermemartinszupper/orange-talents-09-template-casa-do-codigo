@@ -22,6 +22,10 @@ public class Estado {
         this.pais = pais;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
     @Override
     public String toString() {
         return "Estado{" +
