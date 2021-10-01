@@ -1,14 +1,21 @@
 package br.com.zupacademy.gui.casadocodigo.configs.validators.annotations;
 
-import br.com.zupacademy.gui.casadocodigo.configs.validators.ValidaDocumentoValidator;
+import org.hibernate.validator.constraints.CompositionType;
+import org.hibernate.validator.constraints.ConstraintComposition;
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+import javax.validation.ReportAsSingleViolation;
+import java.lang.annotation.*;
 
-@Constraint(validatedBy = ValidaDocumentoValidator.class)
+@Documented
+@ConstraintComposition(CompositionType.OR)
+@CPF
+@ReportAsSingleViolation
+@CNPJ
+@Constraint(validatedBy = {})
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface ValidaDocumento {
